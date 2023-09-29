@@ -21,3 +21,18 @@ Test your ability to keep in sync with complex rhythms.
 `class`
 
 - UpperCamelCase
+
+### File Structure
+
+**This is subject to change along the course of development**
+
+ProjectFolder ↴
+- index.html
+- src/ ↴
+  - main.js
+  - utils.js
+  - audio.js
+  - etc.
+- audio/
+- styles/
+- images/
