@@ -10,7 +10,9 @@ Test your ability to keep in sync with complex rhythms.
 -  lowercase-dashes
 
 ### JavaScript
-All scripts should be in modular scope
+- All scripts should be in modular scope
+- Use of `var` is prohibited
+- All utility functions must be pure functions
 
 `let`, `const` 
 
