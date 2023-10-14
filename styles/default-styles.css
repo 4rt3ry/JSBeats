@@ -1,3 +1,77 @@
+body,
+html {
+    overflow: hidden;
+    font-size: 16px;
+    font-family: 'Dosis', sans-serif;
+}
+
 #style-test {
     color: red;
+}
+
+#visualizer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: auto;
+    z-index: -1;
+}
+
+.center-container {
+    position: absolute;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 50vw;
+    height: 50vh;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    position: relative;
+    display: inline-block;
+    background-color: #233443;
+    border: solid 1px #ff5c7c;
+    /* border: none;  */
+    border-radius: 5px;
+
+    padding: 10px 40px;
+
+    color: #ff5c7c;
+    font-size: 2rem;
+    font-family: 'Dosis', sans-serif;
+    z-index: 1;
+}
+
+button::before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0%;
+    height: 100%;
+    background-color: #ff5c7c;
+    z-index: -1;
+}
+
+button:hover::before {
+    width: 100%;
+    transition: width 0.2s;
+}
+
+button:hover {
+    color: #233443;
+    transition: color 0.2s;
+    cursor: pointer;
 }
