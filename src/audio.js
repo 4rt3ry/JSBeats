@@ -27,6 +27,8 @@ const playMidi = () => {
     if (currentMidi) {
         const now = Tone.now();
         const synth = new Tone.AMSynth().toDestination();
+
+        // For now, only play one track.
         currentMidi.tracks[0].notes.forEach(note => {
             synth.triggerAttackRelease(
                 note.name,
