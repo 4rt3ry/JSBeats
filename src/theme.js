@@ -4,5 +4,6 @@ export const defaultTheme = Object.freeze({
     primaryDark: "#233443",
     secondary: "#ff99ad",
     secondaryFront: "#ff5c7c",
-    secondaryDark: "#963d5a"
+    secondaryDark: "#963d5a",
+    disabled: "#aaaaaa",
 });

@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/default-styles.css">
-    
+
     <script src="https://unpkg.com/tone"></script>
     <script src="https://unpkg.com/@tonejs/midi"></script>
     <script src="src/main.js" type="module"></script>
@@ -18,8 +18,14 @@
 <body>
     <canvas id="visualizer"></canvas>
     <div class="center-container">
-        <button id="play-button">Play</button>
+        <div>
+            <button id="play-button" disabled>Play</button>
+            <select id="midi-options">
+                <option>LOADING</option>
+            </select>
+        </div>
     </div>
+
 </body>
 
 </html>

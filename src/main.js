@@ -7,10 +7,18 @@ const init = () => {
 
     // Load audio data when the webpage loads. This async so it can be placed anywhere in Init()
     // audio.loadDemo();
-    audio.loadMelody();
+    audio.load(() => {
+        document.querySelector("#play-button").removeAttribute("disabled")
+        audio.setCurrentMidi("Beginner 2");
+
+        const midiOptions = document.querySelector("#midi-options");
+        midiOptions.innerHTML = audio.midiFiles.map(name => `<option>${name}<options>`).join("");
+        midiOptions.addEventListener("change", e => audio.setCurrentMidi(e.target.value));
+    });
+
 
     setupUI(canvas); // can be called anywhere in Init()
-    
+
     // Set up canvas before drawing
     visualizer.setupCanvas(canvas);
     visualizer.draw();

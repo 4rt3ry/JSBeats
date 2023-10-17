@@ -65,13 +65,22 @@ button::before {
     z-index: -1;
 }
 
-button:hover::before {
+button:hover:enabled::before {
     width: 100%;
     transition: width 0.2s;
 }
 
-button:hover {
+button:hover:enabled {
     color: #233443;
     transition: color 0.2s;
     cursor: pointer;
+}
+
+button[disabled] {
+    color: #aaaaaa;
+}
+
+#midi-options {
+    display: block;
+    margin: 10px auto;
 }
