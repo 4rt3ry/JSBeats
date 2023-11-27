@@ -2,6 +2,7 @@
     "midi": {
         "Beginner 1": "midi/beginner-1.mid",
         "Beginner 2": "midi/beginner-2.mid",
+        "Intermediate 1": "midi/intermediate-1.mid",
         "Intermediate 2": "midi/intermediate-2.mid"
     },
     "sampler": {
