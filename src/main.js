@@ -33,7 +33,10 @@ const setupUI = canvas => {
     // ...
 
     // Register events
-    playBtn.onclick = audio.playMidi;
+    playBtn.onclick = () => {
+        audio.playMidi();
+        Tone.start();
+    };
     // ...
     // ...
 }
