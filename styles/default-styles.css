@@ -51,7 +51,7 @@ button {
     border-radius: 5px;
 
     padding: 10px 40px;
-    margin-left: 16%;
+    margin-left: 20%;
     margin-bottom: 10%;
 
     color: #ff5c7c;
@@ -93,7 +93,7 @@ button[disabled] {
     /*  safari  */
     -webkit-appearance: none;
     /*  other styles for aesthetics */
-    width: 200px;
+    width: 225px;
     font-size: 1rem;
     padding: 0.675em 6em 0.675em 1em;
     background-color: #233443;
@@ -104,7 +104,7 @@ button[disabled] {
 }
 
 .custom-select {
-    min-width: 100px;
+    min-width: 200px;
     position: relative;
 }
 
