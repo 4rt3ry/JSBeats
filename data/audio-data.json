@@ -1,6 +1,5 @@
 {
     "midi": {
-        "Demo": "midi/full-bar-quarter-notes.mid",
         "Beginner 1": "midi/beginner-1.mid",
         "Beginner 2": "midi/beginner-2.mid",
         "Intermediate 2": "midi/intermediate-2.mid"

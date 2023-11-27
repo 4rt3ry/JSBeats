@@ -10,7 +10,7 @@ const init = () => {
     audio.load(() => {
         // re-enable button when audio loads
         document.querySelector("#play-button").removeAttribute("disabled")
-        audio.setCurrentMidi("Beginner 2");
+        // audio.setCurrentMidi("Beginner 1");
 
         const midiOptions = document.querySelector("#midi-options");
         midiOptions.innerHTML = audio.midiFiles.map(name => `<option>${name}<options>`).join("");

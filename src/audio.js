@@ -53,6 +53,7 @@ const load = async callback => {
             Tone.loaded().then(() => {
                 // set default midi file
                 currentMidi = Object.values(midiFiles)[0];
+                debugger;
                 callback();
             });
         })

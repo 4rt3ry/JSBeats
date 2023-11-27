@@ -80,7 +80,7 @@ const drawTimeMarkers = () => {
     ctx.fillStyle = defaultTheme.primaryFront;
     ctx.strokeStyle = defaultTheme.primaryFront;
 
-    // left and right markers
+    // measure lines
     ctx.beginPath();
     ctx.rect(innerLeft - 2, centerY - 25, 5, 50);
     ctx.rect(innerRight - 2, centerY - 25, 5, 50);
@@ -88,14 +88,35 @@ const drawTimeMarkers = () => {
     ctx.fill();
     ctx.closePath();
 
+    // metronome dots, offset by the first 4 
     const spacing = width / (metronomeMarkers - 4);
     for (let i = 0; i < metronomeMarkers; i++) {
-        if (i == 4 || i == 8) continue;
+        const x = innerLeft + i * spacing - 4 * spacing;
+
+        // measure beats
+
+        if (i == 4 || i == 8) {
+            if (i == metronomeIndex) {
+                ctx.fillStyle = defaultTheme.secondaryFront;
+                ctx.beginPath();
+                ctx.rect(x - 2, centerY - 25, 5, 50);
+                ctx.fill();
+                ctx.closePath();
+            }
+            continue;
+        }
 
         ctx.fillStyle = defaultTheme.primaryFront;
         ctx.strokeStyle = defaultTheme.primaryFront;
         ctx.beginPath();
-        ctx.arc(innerLeft + i * spacing - 4 * spacing, centerY, 5, 0, Math.PI * 2);
+
+        // first four beats
+        if (i < 4) {
+            ctx.arc(centerX - spacing * 1.5 + i * spacing, centerY - 100, 5, 0, Math.PI * 2)
+        }
+        else {
+            ctx.arc(innerLeft + i * spacing - 4 * spacing, centerY, 5, 0, Math.PI * 2);
+        }
         if (i == metronomeIndex) {
             ctx.fillStyle = defaultTheme.secondaryFront;
             ctx.strokeStyle = defaultTheme.secondaryFront;
