@@ -76,10 +76,11 @@ const playMidi = () => {
     // debugger;
 
     Tone.Transport.bpm.value = 100;
-    let now = Tone.now();
 
     let midiToPart = [];
+    let midiMarkers = [];
 
+    // read the midi values
     currentMidi.tracks.forEach(track => {
         track.notes.forEach(note => {
             midiToPart.push({
@@ -87,23 +88,35 @@ const playMidi = () => {
                 note: note.name,
                 velocity: 0.8
             });
+
+            // setup visual data for midi
+            midiMarkers.push(note.time)
         });
     });
 
+    // setup visual data for midi
+    visualizer.loadMidiMarkers(midiMarkers);
+
+    // play the midi
     midiPart = new Tone.Part((time, value) => {
+        if (value.time == 0) visualizer.setStartTime(time);
         percussionSampler.triggerAttackRelease(value.note, "8n", time, value.velocity);
+        setTimeout(() => {
+            visualizer.forceIncorrectFeedback(value.time, 0);
+        }, 300);
     }, midiToPart);
 
+    // play the metronome
     metronomeLoop = new Tone.Part((time, note) => {
         percussionSampler.triggerAttackRelease(note, 0.5, time);
         visualizer.incrementMetronome();
-    }, [[0, "E4"], [0.5, "E4"] , [1, "E4"], [1.5, "E4"]]);
+    }, [[0, "E4"], [0.5, "E4"], [1, "E4"], [1.5, "E4"]]);
     metronomeLoop.loop = 3;
     metronomeLoop.loopEnd = 2;
     // debugger;
 
-    metronomeLoop.start(now);
-    midiPart.start(now + 2);
+    metronomeLoop.start(Tone.now());
+    midiPart.start(Tone.now() + 2);
     Tone.Transport.start();
 
     // If you want to hard-code audio
@@ -120,9 +133,8 @@ const playMidi = () => {
 /**
  * Play a single sound immediately
  */
-const playSingle = () => {
-    percussionSampler.triggerAttackRelease("D4", "8n", Tone.now());
-    console.log("boop: " + Tone.now())
+const registerKeypress = () => {
+    visualizer.approximateInput(Tone.now());
 }
 
-export { loadMidiFile, load, playMidi, setCurrentMidi, midiFileNames as midiFiles, playSingle };
+export { loadMidiFile, load, playMidi, setCurrentMidi, midiFileNames as midiFiles, registerKeypress };

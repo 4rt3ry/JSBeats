@@ -40,11 +40,7 @@ const setupUI = canvas => {
 
 const setupInput = () => {
     window.addEventListener("keydown", e => {
-        // audio.playSingle();
-        // visualizer.debugThing(true);
-        // setTimeout(() => {
-        //     visualizer.debugThing(false);
-        // }, 50);
+        audio.registerKeypress();
     });
 }
 
