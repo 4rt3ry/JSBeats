@@ -7,8 +7,9 @@
     },
     "sampler": {
         "urls": {
-            "C4": "media/tom-dark.wav",
-            "D4": "media/snare.wav"
+            "D4": "media/tom-dark.wav",
+            "C4": "media/snare.wav",
+            "E4": "media/metronome.wav"
         },
         "release": 1
     }

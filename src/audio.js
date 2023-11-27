@@ -1,7 +1,13 @@
+import * as visualizer from "./visualizer.js"
+
+
+
 let midiFiles = {};
 let midiFileNames = [];
 let currentMidi = null;
 let percussionSampler = null;
+let metronomeLoop;
+let midiPart;
 
 /**
  * Load a specific midi file
@@ -58,23 +64,47 @@ const loadDemo = async () => await loadMidiFile(midiFiles.demo);
 
 const playMidi = () => {
     // await loadMidi(midiFiles.melody.path);
+    if (!currentMidi) return;
 
-    if (currentMidi) {
-        const now = Tone.now();
+    // reset tracks
+    midiPart?.stop();
+    midiPart?.dispose();
+    metronomeLoop?.stop();
+    metronomeLoop?.dispose();
+    visualizer.resetMetronome();
 
-        // For now, only play one track.
-        currentMidi.tracks.forEach(
-            track => {
-                track.notes.forEach(note => {
-                    percussionSampler.triggerAttackRelease(
-                        note.name,
-                        note.duration,
-                        note.time + now,
-                        note.velocity);
-                });
-            }
-        )
-    }
+    // debugger;
+
+    Tone.Transport.bpm.value = 100;
+    let now = Tone.now();
+
+    let midiToPart = [];
+
+    currentMidi.tracks.forEach(track => {
+        track.notes.forEach(note => {
+            midiToPart.push({
+                time: note.time,
+                note: note.name,
+                velocity: 0.8
+            });
+        });
+    });
+
+    midiPart = new Tone.Part((time, value) => {
+        percussionSampler.triggerAttackRelease(value.note, "8n", time, value.velocity);
+    }, midiToPart);
+
+    metronomeLoop = new Tone.Part((time, note) => {
+        percussionSampler.triggerAttackRelease(note, 0.5, time);
+        visualizer.incrementMetronome();
+    }, [[0, "E4"], [0.5, "E4"] , [1, "E4"], [1.5, "E4"]]);
+    metronomeLoop.loop = 3;
+    metronomeLoop.loopEnd = 2;
+    // debugger;
+
+    metronomeLoop.start(now);
+    midiPart.start(now + 2);
+    Tone.Transport.start();
 
     // If you want to hard-code audio
 
@@ -87,4 +117,12 @@ const playMidi = () => {
     // Tone.Transport.start();
 }
 
-export { loadMidiFile, load, playMidi, setCurrentMidi, midiFileNames as midiFiles };
+/**
+ * Play a single sound immediately
+ */
+const playSingle = () => {
+    percussionSampler.triggerAttackRelease("D4", "8n", Tone.now());
+    console.log("boop: " + Tone.now())
+}
+
+export { loadMidiFile, load, playMidi, setCurrentMidi, midiFileNames as midiFiles, playSingle };

@@ -8,6 +8,7 @@ const init = () => {
     // Load audio data when the webpage loads. This async so it can be placed anywhere in Init()
     // audio.loadDemo();
     audio.load(() => {
+        // re-enable button when audio loads
         document.querySelector("#play-button").removeAttribute("disabled")
         audio.setCurrentMidi("Beginner 2");
 
@@ -18,6 +19,7 @@ const init = () => {
 
 
     setupUI(canvas); // can be called anywhere in Init()
+    setupInput();
 
     // Set up canvas before drawing
     visualizer.setupCanvas(canvas);
@@ -34,6 +36,16 @@ const setupUI = canvas => {
     playBtn.onclick = audio.playMidi;
     // ...
     // ...
+}
+
+const setupInput = () => {
+    window.addEventListener("keydown", e => {
+        // audio.playSingle();
+        // visualizer.debugThing(true);
+        // setTimeout(() => {
+        //     visualizer.debugThing(false);
+        // }, 50);
+    });
 }
 
 init();

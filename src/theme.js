@@ -1,4 +1,4 @@
-export const defaultTheme = Object.freeze({
+export const defaultTheme = Object.freeze(Object.assign(Object.create(null), {
     primary: "#3f5c78",
     primaryFront: "#dae7df",
     primaryDark: "#233443",
@@ -6,4 +6,4 @@ export const defaultTheme = Object.freeze({
     secondaryFront: "#ff5c7c",
     secondaryDark: "#963d5a",
     disabled: "#aaaaaa",
-});
+}));
